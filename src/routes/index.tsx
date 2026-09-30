@@ -51,10 +51,10 @@ const tools = [
   [Clapperboard, "Video dài → Short"], [FileAudio, "Nhập từ YouTube/Drive"],
   [Sparkles, "Hook mở đầu"], [Captions, "Caption động"],
   [Languages, "Cắt khoảng lặng tự động"], [Film, "Slide tới hậu AI"],
-  [AudioLines, "Đồng bộ nhịp nhạc"], [Scissors, "Lọc màu điện ảnh"],
+  [AudioLines, "Tách giọng nói AI"], [Scissors, "Cắt cảnh thông minh"],
 ] as const;
 
-const samples = [outdoorFitness, pilates, speaker, workout, speaker, pilates];
+const samples = [outdoorFitness, pilates, speaker, workout];
 
 function Index() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -163,7 +163,7 @@ function Index() {
 
           <section className="mt-12">
             <p className="section-label">VIDEO MẪU</p>
-            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
               {samples.map((image, index) => (
                 <button key={index} type="button" onClick={() => setFileName(`Đã chọn Video mẫu ${index + 1}`)} className="sample-card group">
                   <div className="relative aspect-[9/15] overflow-hidden">
