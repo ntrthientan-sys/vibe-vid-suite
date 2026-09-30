@@ -104,7 +104,7 @@ function Index() {
               onSubmit={(e) => {
                 e.preventDefault();
                 const m = linkValue.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
-                if (m) { setYtId(m[1]); setLinkError(""); } else { setYtId(""); setLinkError("Link chưa hợp lệ — hiện chỉ hỗ trợ xem trước YouTube."); }
+                if (m) { setYtId(m[1] ?? ""); setLinkError(""); } else { setYtId(""); setLinkError("Link chưa hợp lệ — hiện chỉ hỗ trợ xem trước YouTube."); }
               }}
               className="relative z-10 mt-5 flex w-full max-w-lg items-center gap-2 rounded-lg border border-border bg-surface p-2 shadow-panel"
             >
