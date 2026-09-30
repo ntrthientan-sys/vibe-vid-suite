@@ -61,6 +61,9 @@ function Index() {
   const [fileName, setFileName] = useState("");
   const [activeTab, setActiveTab] = useState("Video dài → Short");
   const [libraryTab, setLibraryTab] = useState("Tất cả các dự án (6)");
+  const [linkValue, setLinkValue] = useState("https://www.youtube.com/watch?v=06EMXRNZ5xA");
+  const [ytId, setYtId] = useState("");
+  const [linkError, setLinkError] = useState("");
 
   const openPicker = () => inputRef.current?.click();
   const handleFiles = (files: FileList | null) => {
@@ -97,10 +100,29 @@ function Index() {
             <p className="relative z-10 text-sm font-medium">Biến video thô thành content viral — tự động, bằng AI.</p>
             <p className="relative z-10 mt-4 text-xs text-muted-foreground">Kéo thả video dài — AI quét và đề xuất đoạn hay nhất</p>
 
-            <div className="relative z-10 mt-5 flex w-full max-w-lg items-center gap-2 rounded-lg border border-border bg-surface p-2 shadow-panel">
-              <input aria-label="Dán liên kết video" className="min-w-0 flex-1 bg-transparent px-3 text-sm outline-none placeholder:text-muted-foreground" placeholder="Dán link YouTube, Google Drive, hoặc link file vào đây" />
-              <Button size="sm" onClick={() => setFileName("Đang phân tích liên kết…")}>Lấy video</Button>
-            </div>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const m = linkValue.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
+                if (m) { setYtId(m[1]); setLinkError(""); } else { setYtId(""); setLinkError("Link chưa hợp lệ — hiện chỉ hỗ trợ xem trước YouTube."); }
+              }}
+              className="relative z-10 mt-5 flex w-full max-w-lg items-center gap-2 rounded-lg border border-border bg-surface p-2 shadow-panel"
+            >
+              <input value={linkValue} onChange={(e) => setLinkValue(e.target.value)} aria-label="Dán liên kết video" className="min-w-0 flex-1 bg-transparent px-3 text-sm outline-none placeholder:text-muted-foreground" placeholder="Dán link YouTube, Google Drive, hoặc link file vào đây" />
+              <Button size="sm" type="submit">Lấy video</Button>
+            </form>
+            {linkError && <p className="relative z-10 mt-2 text-xs text-destructive">{linkError}</p>}
+            {ytId && (
+              <div className="relative z-10 mt-4 w-full max-w-lg overflow-hidden rounded-lg border border-primary/40 shadow-panel">
+                <iframe
+                  className="aspect-video w-full"
+                  src={`https://www.youtube.com/embed/${ytId}`}
+                  title="Xem trước video YouTube"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            )}
 
             <div className="relative z-10 my-3 flex w-full max-w-lg items-center gap-3 text-[10px] uppercase text-muted-foreground before:h-px before:flex-1 before:bg-border after:h-px after:flex-1 after:bg-border">hoặc</div>
 
