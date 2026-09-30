@@ -149,13 +149,15 @@ function Index() {
 
           <section className="mt-11">
             <p className="section-label">ĐƯỢC HỖ TRỢ BỞI AI</p>
-            <div className="mt-5 grid grid-cols-4 gap-x-3 gap-y-6 md:grid-cols-6 xl:grid-cols-12">
-              {tools.map(([Icon, label]) => (
-                <button key={label} type="button" className="group flex min-w-0 flex-col items-center gap-2 text-center">
-                  <span className="tool-icon"><Icon className="size-5" /></span>
-                  <span className="line-clamp-2 text-[10px] font-medium leading-4 text-muted-foreground group-hover:text-foreground">{label}</span>
-                </button>
-              ))}
+            <div className="marquee mt-5" aria-label="Danh sách công cụ AI">
+              <div className="marquee-track">
+                {[...tools, ...tools].map(([Icon, label], i) => (
+                  <button key={i} type="button" aria-hidden={i >= tools.length} tabIndex={i >= tools.length ? -1 : 0} className="group flex w-24 shrink-0 flex-col items-center gap-2 text-center">
+                    <span className="tool-icon"><Icon className="size-5" /></span>
+                    <span className="line-clamp-2 text-[10px] font-medium leading-4 text-muted-foreground group-hover:text-foreground">{label}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </section>
 
