@@ -34,9 +34,9 @@ import workout from "@/assets/sample-workout.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Clips — Video dài thành nhiều Short" },
+      { title: "Master Videos — Video dài thành nhiều Short" },
       { name: "description", content: "Biến video dài thành nội dung ngắn bằng công cụ chỉnh sửa AI." },
-      { property: "og:title", content: "Clips — Video dài thành nhiều Short" },
+      { property: "og:title", content: "Master Videos — Video dài thành nhiều Short" },
       { property: "og:description", content: "Biến video dài thành nội dung ngắn bằng công cụ chỉnh sửa AI." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -76,7 +76,7 @@ function Index() {
       <header className="sticky top-0 z-30 border-b border-primary/30 bg-header/95 shadow-gold">
         <div className="flex h-14 items-center justify-between px-4 lg:px-7">
           <div className="flex items-center gap-4">
-            <a href="#top" className="brand-mark" aria-label="Clips, trang chủ">Clips</a>
+            <a href="#top" className="brand-mark" aria-label="Master Videos, trang chủ">Master Videos</a>
             <span className="hidden text-xs font-semibold text-foreground sm:inline">Video dài → Nhiều Short</span>
           </div>
           <div className="hidden text-xs font-medium text-muted-foreground lg:block">Thế Giới → Thu Nhập → Tự Do</div>
@@ -96,7 +96,7 @@ function Index() {
 
         <div className="mx-auto w-full max-w-[1120px] px-4 pb-20 pt-10 lg:ml-44 lg:px-8">
           <section className="relative mx-auto flex max-w-2xl flex-col items-center text-center">
-            <div className="watermark" aria-hidden="true">ClipSale</div>
+            <div className="watermark" aria-hidden="true">Master Videos</div>
             <p className="relative z-10 text-sm font-medium">Biến video thô thành content viral — tự động, bằng AI.</p>
             <p className="relative z-10 mt-4 text-xs text-muted-foreground">Kéo thả video dài — AI quét và đề xuất đoạn hay nhất</p>
 
