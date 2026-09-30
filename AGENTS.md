@@ -9,4 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep the Master Videos workspace as a frontend-first, dark gold TanStack interface; media actions remain local placeholders until backend services are requested.
+- Keep the Clips workspace as a frontend-first, dark gold TanStack interface; media actions remain local placeholders until backend services are requested.

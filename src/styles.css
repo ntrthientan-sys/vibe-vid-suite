@@ -230,22 +230,3 @@
 @utility library-tab { padding-bottom: 0.65rem; color: var(--muted-foreground); white-space: nowrap; &:hover { color: var(--foreground); } }
 @utility library-tab-active { border-bottom: 1px solid var(--primary); padding-bottom: 0.65rem; color: var(--foreground); white-space: nowrap; }
 @utility project-card { overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); transition: border-color 180ms ease; &:hover { border-color: oklch(0.83 0.17 92 / 0.55); } }
-
-.marquee {
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-}
-.marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 0.75rem;
-  animation: marquee-rtl 40s linear infinite;
-}
-.marquee:hover .marquee-track { animation-play-state: paused; }
-@keyframes marquee-rtl {
-  from { transform: translateX(0); }
-  to { transform: translateX(calc(-50% - 0.375rem)); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; flex-wrap: wrap; width: auto; }
-}
