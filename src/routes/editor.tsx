@@ -110,7 +110,7 @@ function Editor() {
   const syncEl = (el: HTMLMediaElement | null, l: typeof curMain, m?: Media) => {
     if (!el) return;
     if (!l || !m || m.kind === "image") { el.pause(); return; }
-    if (el.dataset.src !== m.url) { el.src = m.url; el.dataset.src = m.url; }
+    if (el.dataset["src"] !== m.url) { el.src = m.url; el.dataset["src"] = m.url; }
     const target = l.clip.in + (time - l.start);
     if (Math.abs(el.currentTime - target) > 0.3) el.currentTime = target;
     if (playing && el.paused) void el.play().catch(() => {});
