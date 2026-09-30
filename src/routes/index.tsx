@@ -16,6 +16,7 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { skills } from "@/lib/skills";
+import { SkillAgent } from "@/components/SkillAgent";
 import outdoorFitness from "@/assets/sample-outdoor-fitness.jpg";
 import pilates from "@/assets/sample-pilates.jpg";
 import speaker from "@/assets/sample-speaker.jpg";
@@ -146,10 +147,10 @@ function Index() {
                 {skill && (
                   <>
                     <DialogHeader>
-                      <DialogTitle className="flex items-center gap-2 text-primary"><skill.icon className="size-5" />{skill.label}</DialogTitle>
-                      <DialogDescription>{skill.description}</DialogDescription>
+                      <DialogTitle className="flex items-center gap-2 text-primary"><skill.icon className="size-5" />Agent · {skill.label}</DialogTitle>
+                      <DialogDescription className="line-clamp-2">{skill.description}</DialogDescription>
                     </DialogHeader>
-                    <pre className="whitespace-pre-wrap font-sans text-xs leading-5 text-foreground/90">{skill.body}</pre>
+                    <SkillAgent key={skill.slug} skill={skill} />
                   </>
                 )}
               </DialogContent>
