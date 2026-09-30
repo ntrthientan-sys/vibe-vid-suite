@@ -34,9 +34,9 @@ import workout from "@/assets/sample-workout.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Clips — Video dài thành nhiều Short" },
+      { title: "Master Clip — Video dài thành nhiều Short" },
       { name: "description", content: "Biến video dài thành nội dung ngắn bằng công cụ chỉnh sửa AI." },
-      { property: "og:title", content: "Clips — Video dài thành nhiều Short" },
+      { property: "og:title", content: "Master Clip — Video dài thành nhiều Short" },
       { property: "og:description", content: "Biến video dài thành nội dung ngắn bằng công cụ chỉnh sửa AI." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -76,7 +76,7 @@ function Index() {
       <header className="sticky top-0 z-30 border-b border-primary/30 bg-header/95 shadow-gold">
         <div className="flex h-14 items-center justify-between px-4 lg:px-7">
           <div className="flex items-center gap-4">
-            <a href="#top" className="brand-mark" aria-label="Clips, trang chủ">Clips</a>
+            <a href="#top" className="brand-mark" aria-label="Master Clip, trang chủ">Master Clip</a>
             <span className="hidden text-xs font-semibold text-foreground sm:inline">Video dài → Nhiều Short</span>
           </div>
           <div className="hidden text-xs font-medium text-muted-foreground lg:block">Thế Giới → Thu Nhập → Tự Do</div>
@@ -96,7 +96,7 @@ function Index() {
 
         <div className="mx-auto w-full max-w-[1120px] px-4 pb-20 pt-10 lg:ml-44 lg:px-8">
           <section className="relative mx-auto flex max-w-2xl flex-col items-center text-center">
-            <div className="watermark" aria-hidden="true">ClipSale</div>
+            <div className="watermark" aria-hidden="true">Master Clip</div>
             <p className="relative z-10 text-sm font-medium">Biến video thô thành content viral — tự động, bằng AI.</p>
             <p className="relative z-10 mt-4 text-xs text-muted-foreground">Kéo thả video dài — AI quét và đề xuất đoạn hay nhất</p>
 
@@ -149,13 +149,19 @@ function Index() {
 
           <section className="mt-11">
             <p className="section-label">ĐƯỢC HỖ TRỢ BỞI AI</p>
-            <div className="mt-5 grid grid-cols-4 gap-x-3 gap-y-6 md:grid-cols-6 xl:grid-cols-12">
-              {tools.map(([Icon, label]) => (
-                <button key={label} type="button" className="group flex min-w-0 flex-col items-center gap-2 text-center">
-                  <span className="tool-icon"><Icon className="size-5" /></span>
-                  <span className="line-clamp-2 text-[10px] font-medium leading-4 text-muted-foreground group-hover:text-foreground">{label}</span>
-                </button>
-              ))}
+            <div className="tools-marquee mt-5" aria-label="Các công cụ được hỗ trợ bởi AI">
+              <div className="tools-marquee-track">
+                {[0, 1].map((copy) => (
+                  <div key={copy} className="tools-marquee-set" aria-hidden={copy === 1}>
+                    {tools.map(([Icon, label], index) => (
+                      <button key={`${copy}-${label}-${index}`} type="button" className="group flex w-24 shrink-0 flex-col items-center gap-2 text-center">
+                        <span className="tool-icon"><Icon className="size-5" /></span>
+                        <span className="line-clamp-2 text-[10px] font-medium leading-4 text-muted-foreground group-hover:text-foreground">{label}</span>
+                      </button>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
 
