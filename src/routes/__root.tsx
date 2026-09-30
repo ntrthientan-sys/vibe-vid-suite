@@ -77,10 +77,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Master Clip" },
+      { title: "Master Studio" },
       { name: "description", content: "Không gian chỉnh sửa video ngắn bằng AI." },
-      { name: "author", content: "Master Clip" },
-      { property: "og:title", content: "Master Clip" },
+      { name: "author", content: "Master Studio" },
+      { property: "og:title", content: "Master Studio" },
       { property: "og:description", content: "Không gian chỉnh sửa video ngắn bằng AI." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
