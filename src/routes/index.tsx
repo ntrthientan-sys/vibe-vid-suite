@@ -15,7 +15,6 @@ import {
   LogIn,
   Mic2,
   Music2,
-  Pause,
   Play,
   Plus,
   Scissors,
@@ -25,7 +24,7 @@ import {
   Subtitles,
   WandSparkles,
 } from "lucide-react";
-import { useRef, useState, type CSSProperties } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import outdoorFitness from "@/assets/sample-outdoor-fitness.jpg";
 import pilates from "@/assets/sample-pilates.jpg";
