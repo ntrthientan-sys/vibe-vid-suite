@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   AudioLines,
   ChevronRight,
@@ -64,6 +64,7 @@ function Index() {
           </div>
           <div className="hidden text-xs font-medium text-muted-foreground lg:block">Thế Giới → Thu Nhập → Tự Do</div>
           <div className="flex items-center gap-2">
+            <Button asChild size="sm"><Link to="/editor">Mở trình chỉnh sửa</Link></Button>
             <Button variant="outline" size="sm"><CircleDollarSign className="size-3.5 text-primary" />Giá cả</Button>
             <Button variant="outline" size="sm" className="hidden sm:inline-flex"><FolderClosed className="size-3.5" />Dự án</Button>
             <Button variant="outline" size="sm" className="hidden md:inline-flex"><AudioLines className="size-3.5" />Âm thanh</Button>
