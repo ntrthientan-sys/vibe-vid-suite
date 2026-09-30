@@ -15,7 +15,6 @@ import {
   LogIn,
   Mic2,
   Music2,
-  Pause,
   Play,
   Plus,
   Scissors,
@@ -25,7 +24,7 @@ import {
   Subtitles,
   WandSparkles,
 } from "lucide-react";
-import { useRef, useState, type CSSProperties } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import outdoorFitness from "@/assets/sample-outdoor-fitness.jpg";
 import pilates from "@/assets/sample-pilates.jpg";
@@ -65,8 +64,6 @@ function Index() {
   const [linkValue, setLinkValue] = useState("https://www.youtube.com/watch?v=06EMXRNZ5xA");
   const [ytId, setYtId] = useState("");
   const [linkError, setLinkError] = useState("");
-  const [isMarqueePlaying, setIsMarqueePlaying] = useState(true);
-  const [marqueeSpeed, setMarqueeSpeed] = useState(1);
 
   const openPicker = () => inputRef.current?.click();
   const handleFiles = (files: FileList | null) => {
@@ -151,51 +148,14 @@ function Index() {
           </section>
 
           <section className="mt-11">
-            <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
-              <p className="section-label">ĐƯỢC HỖ TRỢ BỞI AI</p>
-              <div className="flex items-center gap-3" aria-label="Điều khiển băng chuyền công cụ">
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="icon"
-                  className="size-8"
-                  onClick={() => setIsMarqueePlaying((playing) => !playing)}
-                  aria-label={isMarqueePlaying ? "Tạm dừng băng chuyền" : "Tiếp tục băng chuyền"}
-                  title={isMarqueePlaying ? "Tạm dừng" : "Tiếp tục"}
-                >
-                  {isMarqueePlaying ? <Pause className="size-3.5" /> : <Play className="size-3.5" />}
-                </Button>
-                <label htmlFor="marquee-speed" className="text-[10px] font-semibold uppercase text-muted-foreground">Tốc độ</label>
-                <input
-                  id="marquee-speed"
-                  type="range"
-                  min="0.5"
-                  max="2"
-                  step="0.25"
-                  value={marqueeSpeed}
-                  onChange={(event) => setMarqueeSpeed(Number(event.target.value))}
-                  className="h-1.5 w-24 cursor-pointer accent-primary"
-                  aria-valuetext={`${marqueeSpeed} lần`}
-                />
-                <output htmlFor="marquee-speed" className="w-8 text-right text-xs font-semibold text-primary">{marqueeSpeed}×</output>
-              </div>
-            </div>
-            <div className="tools-marquee mt-5" aria-label="Các công cụ được hỗ trợ bởi AI">
-              <div
-                className={`tools-marquee-track${isMarqueePlaying ? "" : " is-paused"}`}
-                style={{ "--marquee-duration": `${34 / marqueeSpeed}s` } as CSSProperties}
-              >
-                {[0, 1].map((copy) => (
-                  <div key={copy} className="tools-marquee-set" aria-hidden={copy === 1}>
-                    {tools.map(([Icon, label], index) => (
-                      <button key={`${copy}-${label}-${index}`} type="button" className="group flex w-24 shrink-0 flex-col items-center gap-2 text-center">
-                        <span className="tool-icon"><Icon className="size-5" /></span>
-                        <span className="line-clamp-2 text-[10px] font-medium leading-4 text-muted-foreground group-hover:text-foreground">{label}</span>
-                      </button>
-                    ))}
-                  </div>
-                ))}
-              </div>
+            <p className="section-label">ĐƯỢC HỖ TRỢ BỞI AI</p>
+            <div className="mt-5 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
+              {tools.map(([Icon, label], index) => (
+                <button key={`${label}-${index}`} type="button" className="group flex flex-col items-center gap-2 rounded-lg border border-border/60 bg-surface px-2 py-4 text-center transition-colors hover:border-primary/50">
+                  <span className="tool-icon"><Icon className="size-5" /></span>
+                  <span className="line-clamp-2 text-[10px] font-medium leading-4 text-muted-foreground group-hover:text-foreground">{label}</span>
+                </button>
+              ))}
             </div>
           </section>
 
