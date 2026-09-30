@@ -1,28 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   AudioLines,
-  Captions,
   ChevronRight,
   CircleDollarSign,
-  Clapperboard,
   Clock3,
   CloudUpload,
-  FileAudio,
-  Film,
   FolderClosed,
   House,
-  Languages,
   LogIn,
-  Mic2,
-  Music2,
   Play,
   Plus,
-  Scissors,
-  SlidersHorizontal,
-  Sparkles,
   Star,
-  Subtitles,
-  WandSparkles,
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
