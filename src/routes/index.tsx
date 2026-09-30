@@ -26,6 +26,8 @@ import {
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { skills } from "@/lib/skills";
 import outdoorFitness from "@/assets/sample-outdoor-fitness.jpg";
 import pilates from "@/assets/sample-pilates.jpg";
 import speaker from "@/assets/sample-speaker.jpg";
@@ -45,15 +47,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const tools = [
-  [Subtitles, "Sửa lỗi phụ đề AI"], [Music2, "Đồng bộ nhịp nhạc"],
-  [SlidersHorizontal, "Lọc màu điện ảnh"], [WandSparkles, "AI chấm điểm cảnh quay"],
-  [Clapperboard, "Video dài → Short"], [FileAudio, "Nhập từ YouTube/Drive"],
-  [Sparkles, "Hook mở đầu"], [Captions, "Caption động"],
-  [Languages, "Cắt khoảng lặng tự động"], [Film, "Slide tới hậu AI"],
-  [AudioLines, "Đồng bộ nhịp nhạc"], [Scissors, "Lọc màu điện ảnh"],
-] as const;
-
 const samples = [outdoorFitness, pilates, speaker, workout, speaker, pilates];
 
 function Index() {
@@ -64,6 +57,8 @@ function Index() {
   const [linkValue, setLinkValue] = useState("https://www.youtube.com/watch?v=06EMXRNZ5xA");
   const [ytId, setYtId] = useState("");
   const [linkError, setLinkError] = useState("");
+  const [openSkill, setOpenSkill] = useState<string | null>(null);
+  const skill = skills.find((s) => s.slug === openSkill);
 
   const openPicker = () => inputRef.current?.click();
   const handleFiles = (files: FileList | null) => {
@@ -148,15 +143,28 @@ function Index() {
           </section>
 
           <section className="mt-11">
-            <p className="section-label">ĐƯỢC HỖ TRỢ BỞI AI</p>
+            <p className="section-label">CÔNG CỤ AI · {skills.length} SKILL</p>
             <div className="mt-5 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
-              {tools.map(([Icon, label], index) => (
-                <button key={`${label}-${index}`} type="button" className="group flex flex-col items-center gap-2 rounded-lg border border-border/60 bg-surface px-2 py-4 text-center transition-colors hover:border-primary/50">
+              {skills.map(({ slug, icon: Icon, label }) => (
+                <button key={slug} type="button" onClick={() => setOpenSkill(slug)} className="group flex flex-col items-center gap-2 rounded-lg border border-border/60 bg-surface px-2 py-4 text-center transition-colors hover:border-primary/50">
                   <span className="tool-icon"><Icon className="size-5" /></span>
                   <span className="line-clamp-2 text-[10px] font-medium leading-4 text-muted-foreground group-hover:text-foreground">{label}</span>
                 </button>
               ))}
             </div>
+            <Dialog open={!!skill} onOpenChange={(o) => !o && setOpenSkill(null)}>
+              <DialogContent className="max-h-[85vh] max-w-2xl overflow-y-auto border-primary/40 bg-surface">
+                {skill && (
+                  <>
+                    <DialogHeader>
+                      <DialogTitle className="flex items-center gap-2 text-primary"><skill.icon className="size-5" />{skill.label}</DialogTitle>
+                      <DialogDescription>{skill.description}</DialogDescription>
+                    </DialogHeader>
+                    <pre className="whitespace-pre-wrap font-sans text-xs leading-5 text-foreground/90">{skill.body}</pre>
+                  </>
+                )}
+              </DialogContent>
+            </Dialog>
           </section>
 
           <section className="mt-12">
