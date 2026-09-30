@@ -228,14 +228,14 @@
   overflow: hidden;
   padding-block: 0.35rem;
   mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-  &:hover .tools-marquee-track { animation-play-state: paused; }
 }
 
 @utility tools-marquee-track {
   display: flex;
   width: max-content;
-  animation: tools-marquee-left 34s linear infinite;
+  animation: tools-marquee-left var(--marquee-duration, 34s) linear infinite;
   will-change: transform;
+  &.is-paused { animation-play-state: paused; }
 }
 
 @utility tools-marquee-set {
